@@ -76,7 +76,7 @@ WSGI_APPLICATION = 'search_bar.wsgi.application'
 
 DATABASES = {
     'default': {
-        'ENGINE': 'mssql',
+        'ENGINE': 'sql_server.pyodbc',
         'NAME': 'search',
         'USER' : '',
         'PASSWORD': '',
