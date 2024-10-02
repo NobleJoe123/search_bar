@@ -1,0 +1,42 @@
+{% load static %}
+
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Product Search</title>
+    <link rel="stylesheet" href="{% static 'search/style.css' %}">
+</head>
+
+<body>
+
+    <div class="container">
+        <h1>Product Search</h1>
+        <form method="GET" action="{% url 'search' %}" class="search-bar">
+            {{ form.query }}
+            <button type="submit">Search</button>
+        </form>
+
+        <div class="results">
+            {% if query %}
+            <h2>Results for "{{ query }}":</h2>
+            {% if results %}
+            {% for product in results %}
+            <div class="product">
+                <h3>{{ product.name }}</h3>
+                <p><strong>Desc:</strong> {{ product.description }}</p>
+                <p><strong>Price:</strong> ${{ product.price }}</p>
+            </div>
+            {% endfor %}
+            {% else %}
+            <p>No products found matching "{{ query }}".</p>
+            {% endif %}
+            {% endif %}
+        </div>
+    </div>
+
+</body>
+
+</html>
