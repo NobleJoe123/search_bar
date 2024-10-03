@@ -1,6 +1,7 @@
 from django import forms
+from .models import Search
+from .models import Search
 
-from .models import Product
 
 
 
@@ -11,5 +12,5 @@ class SearchForm(forms.Form):
 
 class UpdateProductForm(forms.ModelForm):
     class Meta:
-        model = Product
+        model = Search
         fields = ['name', 'description', 'price']
