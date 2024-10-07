@@ -13,3 +13,8 @@ class UpdateForm(forms.ModelForm):
     class Meta:
         model = Search
         fields = ['name', 'description', 'price']
+        labels = {
+            'name': 'Product Name',
+            'description': 'Product Description',
+            'price': 'Product Price',
+        }

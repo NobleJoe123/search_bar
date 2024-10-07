@@ -27,38 +27,3 @@ button {
     border-radius: 7px;
     cursor: pointer;
 }
-button:hover {
-    background-color: #218838;
-}
-.results {
-    margin-top: 20px;
-}
-.product {
-    margin-bottom: 10px;
-}
-
-.results .product{
-    background-color: #fff;
-    /* display: flex;
-    justify-content: space-between; */
-    width: 100%;
-    height: auto;
-    border-radius: 8px;
-    padding: 5px;
-    color: #454545;
-    box-shadow: 0 0 7px #301515a1;
-}
-
-.results .product h3{
-    font-size: 32px;
-    
-
-}
-
-/* 
-input, textarea { width: 100%; padding: 10px; margin: 10px 0; }
-button { padding: 10px; margin: 10px 0; }
-.hidden { display: none; }
-.update-btn { padding: 5px 10px; background-color: #007BFF; color: white; border: none; text-decoration: none; }
-.update-btn:hover { background-color: #0056b3; }
-.cancel-btn { padding: 5px 10px; background-color: #f44336; color: white; border: none; cursor: pointer; } */
