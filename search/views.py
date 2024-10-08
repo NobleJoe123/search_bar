@@ -17,13 +17,15 @@ def search_view(request):
 
     return render(request, 'search/index.html', {'form': form, 'query': query, 'results': results})
 
-def search_update(request, product_id):
-    product = get_object_or_404(Search, id=product_id)
+
+
+def search_update(request):
+    product = get_object_or_404(Search)
 
     if request.method == 'POST':
         form = UpdateForm(request.POST, instance=product)
         if form.is_valid():
-            form.save()
-            return redirect('search')  # Redirect back to the search page
-
-    return redirect('search')
+            return redirect(request, 'search/index.html')  # Redirect back to the search page
+    else:
+        form = search_update()
+    return render(request, 'search/main.html', {'form': form})
