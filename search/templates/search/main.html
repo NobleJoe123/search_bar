@@ -1,41 +1,16 @@
-{% load static %}
+
+
+{% load static%}
 
 <!DOCTYPE html>
 <html lang="en">
-
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Product Search</title>
+    <title>Document</title>
     <link rel="stylesheet" href="{% static 'search/main.css' %}">
 </head>
-
 <body>
-
-    <div class="container">
-        <h1>Product Search</h1>
-        <form method="GET" action="{% url 'search' %}" class="search-bar">
-            {{ form.query }}
-            <button type="submit">Search</button>
-        </form>
-
-        <div class="results">
-            {% if query %}
-            <h2>Results for "{{ query }}":</h2>
-            {% if results %}
-            {% for product in results %}
-            <div class="product">
-                <h3>{{ product.name }}</h3>
-                <p><strong>Desc:</strong> {{ product.description }}</p>
-                <p><strong>Price:</strong> ${{ product.price }}</p>
-            </div>
-            {% endfor %}
-            {% else %}
-            <p>No products found matching "{{ query }}".</p>
-            {% endif %}
-            {% endif %}
-        </div>
-    </div>
     <button id="updateButton" onclick="toggleForm()">Update</button>
     <div id="updateForm" style="display: none;">
         <h2>Update Product</h2>
@@ -50,25 +25,8 @@
             <input type="number" step="0.01" id="product-price" name="product-price" required>
             <button type="submit">Update Product</button>
         </form>
+        <button class="cancel-btn" id="cancel-update">Cancel</button>
     </div>
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 
     <!-- Load the static JavaScript file -->
     <script>
@@ -86,9 +44,5 @@
             }
         }
     </script>
-
-
-
 </body>
-
 </html>
