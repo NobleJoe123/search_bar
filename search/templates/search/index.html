@@ -7,7 +7,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Product Search</title>
-    <link rel="stylesheet" href="{% static 'search/main.css' %}">
+    <link rel="stylesheet" href="{% static 'search/style.css' %}">
 </head>
 
 <body>
@@ -15,6 +15,8 @@
     <div class="container">
         <h1>Product Search</h1>
         <form method="GET" action="{% url 'search' %}" class="search-bar">
+            <!-- {{ search_form.query.label }} Render label -->
+            {{ search_form.query }}
             {{ form.query }}
             <button type="submit">Search</button>
         </form>
@@ -36,19 +38,18 @@
             {% endif %}
         </div>
     </div>
-    <button id="updateButton" onclick="toggleForm()">Update</button>
-    <div id="updateForm" style="display: none;">
-        <h2>Update Product</h2>
+    <button id="createButton" onclick="toggleForm()">Create</button>
+    <div id="createForm" style="display: none;">
+        <h2>Create Product</h2>
         <form method="POST">
             {% csrf_token %}
-            <input type="hidden" id="product-id" name="id">
-            <label for="product-name">Product Name:</label>
-            <input type="text" id="product-name" name="product-name" required>
-            <label for="product-description">Product Description:</label>
-            <textarea id="product-description" name="product-description" rows="4"></textarea>
-            <label for="product-price">Product Price:</label>
-            <input type="number" step="0.01" id="product-price" name="product-price" required>
-            <button type="submit">Update Product</button>
+            {{ create_form.name.label }} <!-- Render name label -->
+            {{ create_form.name }} <!-- Render name input -->
+            {{ create_form.description.label }} <!-- Render description label -->
+            {{ create_form.description }} <!-- Render description textarea -->
+            {{ create_form.price.label }} <!-- Render price label -->
+            {{ create_form.price }}
+            <button type="submit">Submit</button>
         </form>
     </div>
 
@@ -71,21 +72,7 @@
 
 
     <!-- Load the static JavaScript file -->
-    <script>
-        function toggleForm() {
-            const form = document.getElementById('updateForm');
-            const button = document.getElementById('updateButton');
-            if (form.style.display === 'none') {
-                form.style.display = 'block';
-                button.textContent = 'Cancel';
-                button.style.backgroundColor = 'red';
-            } else {
-                form.style.display = 'none';
-                button.textContent = 'Update Profile';
-                button.style.backgroundColor = '#28a745';
-            }
-        }
-    </script>
+    <script src="{% static 'search/main.js' %}"></script>
 
 
 

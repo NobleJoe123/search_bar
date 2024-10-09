@@ -1,6 +1,6 @@
 body {
     font-family: Arial, sans-serif;
-    margin: 20px;
+    margin: 0;
     padding: 0;
     display: flex;
     flex-direction: column;
@@ -15,8 +15,17 @@ body {
     margin-bottom: 20px;
 }
 
-#updateForm{
-   align-items: center;
+#createForm{
+  position: absolute;
+  text-align: center;
+
+
+}
+
+#createButton{
+    position: absolute;
+    margin-top: 8.2%;
+    margin-left: 42%;
 
 
 }
@@ -34,7 +43,7 @@ button {
     background-color: #28a745;
     color: white;
     border: none;
-    border-radius: 7px;
+    border-radius: 20px;
     cursor: pointer;
 }
 

@@ -1,4 +1,16 @@
-
+function toggleForm() {
+    const form = document.getElementById('createForm');
+    const button = document.getElementById('createButton');
+    if (form.style.display === 'none') {
+        form.style.display = 'block';
+        button.textContent = 'Cancel';
+        button.style.backgroundColor = 'red';
+    } else {
+        form.style.display = 'none';
+        button.textContent = 'Create';
+        button.style.backgroundColor = '#28a745';
+    }
+}
 
 
 
