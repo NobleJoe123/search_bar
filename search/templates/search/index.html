@@ -59,6 +59,43 @@
         </form>
     </div>
 
+    <!-- person_Table_view -->
+
+    <div class="">
+        <table class="person-table">
+            <thead>
+                <tr>
+                    <th>S/N</th>
+                    <th>Name</th>
+                    <th>Email</th>
+                    <th>Address</th>
+                    <th>Phone_Number</th>
+                    <th>Age</th>
+                    <th>Sex</th>
+                </tr>
+            </thead>
+            <tbody>
+                {% for person in people %}
+                <tr data-image-url="{{ person.image.url }}">
+                    <td>{{ person.id }}</td>
+                    <td>{{ person.name }}</td>
+                    <td>{{ person.email }}</td>
+                    <td>{{ person.address }}</td>
+                    <td>{{ person.phonenum }}</td>
+                    <td>{{ person.age }}</td>
+                    <td>{{ person.sex }}</td>  
+                </tr>
+                {% endfor %}
+            </tbody>
+        </table>
+
+        <!-- Section to display person's picture -->
+        <div id="person-image-container">
+            <img id="person-image" class="person-image" src="{{ person.image }}" alt="Click on a person to view their image"
+                style="display:none;">
+        </div>
+    </div>
+
 
 
 

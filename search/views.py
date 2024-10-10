@@ -31,7 +31,7 @@ def search_view(request):
 
 def person_view(request):
     # Get the first 10 records from the Person table
-    people = BioData.objects.all()[:10]
+    people = BioData.objects.all()[:1]
     
     return render(request, 'search/index.html', {
         'people': people

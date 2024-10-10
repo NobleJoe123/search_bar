@@ -12,6 +12,18 @@ function toggleForm() {
     }
 }
 
+document.querySelectorAll('.person-table tbody tr').forEach(function(row) {
+    row.addEventListener('click', function() {
+        // Get the image URL from the row data
+        var imageUrl = this.getAttribute('data-image-url');
+        var imageElement = document.getElementById('person-image');
+
+        // Set the image source and make it visible
+        imageElement.src = imageUrl;
+        imageElement.style.display = 'block';
+    });
+});
+
 
 
 
