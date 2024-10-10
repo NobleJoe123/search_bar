@@ -45,10 +45,16 @@
             {% csrf_token %}
             {{ create_form.name.label }} <!-- Render name label -->
             {{ create_form.name }} <!-- Render name input -->
-            {{ create_form.description.label }} <!-- Render description label -->
-            {{ create_form.description }} <!-- Render description textarea -->
-            {{ create_form.price.label }} <!-- Render price label -->
-            {{ create_form.price }}
+            {{ create_form.email.label }} <!-- Render description label -->
+            {{ create_form.email }} <!-- Render description textarea -->
+            {{ create_form.address.label }} <!-- Render price label -->
+            {{ create_form.address }}
+            {{ create_form.phonenum.label }} <!-- Render price label -->
+            {{ create_form.phonenum }}
+            {{ create_form.age.label }} <!-- Render price label -->
+            {{ create_form.age }}
+            {{ create_form.sex.label }} <!-- Render price label -->
+            {{ create_form.sex }}
             <button type="submit">Submit</button>
         </form>
     </div>

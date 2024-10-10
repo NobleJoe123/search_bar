@@ -1,5 +1,5 @@
 from django.shortcuts import render, get_object_or_404, redirect, HttpResponse
-from .models import Search
+from .models import BioData
 from .forms import SearchForm, CreateForm
 
 
@@ -14,7 +14,7 @@ def search_view(request):
 
     if search_form.is_valid():
         query = search_form.cleaned_data.get('query')
-        results = Search.objects.filter(name__icontains=query)
+        results = BioData.objects.filter(name__icontains=query)
 
     if request.method == 'POST' and create_form.is_valid():
         create_form.save()
@@ -26,6 +26,36 @@ def search_view(request):
         'query': query, 
         'results': results
     })
+
+
+
+def person_view(request):
+    # Get the first 10 records from the Person table
+    people = BioData.objects.all()[:10]
+    
+    return render(request, 'search/index.html', {
+        'people': people
+    })
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 # def search_update(request, pk):
 
