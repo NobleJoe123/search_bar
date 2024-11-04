@@ -1,12 +1,13 @@
 from django.shortcuts import render, get_object_or_404, redirect, HttpResponse
-from .models import BioData
-from .forms import SearchForm, CreateForm
+from .models import Person, BankDetail
+from .forms import SearchForm, CreateForm, DetailForm
 
 
 
 def search_view(request):
     search_form = SearchForm(request.GET or None)
-    create_form = CreateForm(request.POST or None)
+    create_form = CreateForm(request.POST, request.FILES)
+    people = Person.objects.all()[:10]
     query = ''
     results = []
     
@@ -14,7 +15,7 @@ def search_view(request):
 
     if search_form.is_valid():
         query = search_form.cleaned_data.get('query')
-        results = BioData.objects.filter(name__icontains=query)
+        results = Person.objects.filter(name__icontains=query)
 
     if request.method == 'POST' and create_form.is_valid():
         create_form.save()
@@ -22,20 +23,43 @@ def search_view(request):
 
     return render(request, 'search/index.html', {
         'search_form': search_form,
-        'create_form': create_form,
+        'create_form': create_form, 
+        'people': people,
         'query': query, 
         'results': results
+       
     })
 
 
 
-def person_view(request):
-    # Get the first 10 records from the Person table
-    people = BioData.objects.all()[:1]
+def person_details(request):
+     person_id = request.GET.get('id')  # Get the person ID from the URL
+     person = get_object_or_404(Person, id=person_id)  # Fetch the person from the database
+     banks = BankDetail.objects.filter(person=person)
+     detail_form = DetailForm(request.POST)
+     
+     if request.method == 'POST' and detail_form.is_valid():
+        detail_form.save()
+        return redirect('search')  # Redirect after saving
+
+     
+     return render(request, 'search/details.html', {
+    'person' : person,
+    'banks': banks,
+    'detail_form': detail_form
+        
+    })
+
+# def bank_details(request, person_id):
+
+#     person = get_object_or_404(Person, id=person_id)
     
-    return render(request, 'search/index.html', {
-        'people': people
-    })
+
+#     return render(request, 'search/details.html',{
+#         'person': person, 
+#         'banks':banks
+        
+#         })
 
 
 

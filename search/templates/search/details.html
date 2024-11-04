@@ -1,0 +1,125 @@
+{% load static%}
+
+
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Person Details</title>
+    <link rel="stylesheet" href="{% static 'search/style.css' %}">
+</head>
+
+<body>
+    <h1>Person Details</h1>
+    <div class="line">
+
+    </div>
+    <div class="person-details-container">
+        <div class="detail-image">
+            <img src="{{ person.image.url }}" alt="Click on a person to view their image" width="200px" height="300px">
+        </div>
+        <div id="person-details-{{ person.id }}" class="person-details">
+            <!-- <p data-image-url="{{ person.image.url }}"></p> -->
+            <p><strong>Name:</strong> {{person.name}}</p>
+            <p><strong>Age:</strong> {{ person.age }}</p>
+            <p><strong>Sex:</strong> {{person.sex}}</p>
+            <p><strong>Phone-Number:</strong> {{ person.phonenum }}</p>
+            <p><strong>Address:</strong> {{ person.address }}</p>
+            <p><strong>SSN:</strong> {{ person.ssn }}</p>
+        </div>
+
+    </div>
+    <div class="line">
+
+    </div>
+        <div class="bankbtn">
+        <button id="createButton" onclick="toggleForm()">Create</button>
+        </div>
+        <div id="createForm" style="display: none;" class="form_bank">
+            <form action="" method="post">
+                {% csrf_token %}
+                {{ detail_form.as_p }}
+                <button type="submit">Submit</button>
+            </form>
+        </div>
+
+
+
+    <div class="bank-details">
+        <button type="button" id="bankbtn" onclick="toggleBankDetails()">Bank Details</button>
+        <div id="bankdetail" style="display: none;">
+            {% for bank in banks %}
+            <p><b>Bank-Name:</b> {{ bank.bank_used}}</p>
+            <p><b>Bvn:</b> {{ bank.bvn}}</p>
+            <p><b>Nin:</b> {{ bank.nin}}</p>
+            <p><b>Account-Number:</b> {{ bank.account_number}}</p>
+            {% endfor %}
+        </div>
+    </div>
+
+    <div class="social-details">
+        <button type="button">Social Record</button>
+    </div>
+
+    <div class="criminal-details">
+        <button type="button">Criminal Record</button>
+    </div>
+
+    <div class="education-details">
+        <button type="button">Educational Record</button>
+    </div>
+
+
+
+
+
+
+
+
+
+
+
+
+    <script src="{% static 'search/style.js' %}"></script>
+
+</body>
+
+</html>
+
+
+
+
+
+
+
+
+<!-- 
+<button id="updateButton" onclick="toggleForm()">Update</button>
+<div id="updateForm" style="display: none;">
+    <h2>Update Product</h2>
+    <form method="POST">
+        {% csrf_token %}
+        {{ form.as_p }}
+        <button type="submit">Update Product</button>
+    </form>
+    <button class="cancel-btn" id="cancel-update">Cancel</button>
+</div> -->
+
+<!-- Load the static JavaScript file -->
+<!-- <script>
+    function toggleForm() {
+        const form = document.getElementById('updateForm');
+        const button = document.getElementById('updateButton');
+        if (form.style.display === 'none') {
+            form.style.display = 'block';
+            button.textContent = 'Cancel';
+            button.style.backgroundColor = 'red';
+        } else {
+            form.style.display = 'none';
+            button.textContent = 'Update Profile';
+            button.style.backgroundColor = '#28a745';
+        }
+    }
+</script> -->

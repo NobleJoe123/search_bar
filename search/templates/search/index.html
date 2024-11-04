@@ -6,14 +6,14 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Product Search</title>
+    <title>Person Search</title>
     <link rel="stylesheet" href="{% static 'search/style.css' %}">
 </head>
 
 <body>
 
-    <div class="container">
-        <h1>Product Search</h1>
+    <div class="search_container">
+        <h1>Person Search</h1>
         <form method="GET" action="{% url 'search' %}" class="search-bar">
             <!-- {{ search_form.query.label }} Render label -->
             {{ search_form.query }}
@@ -25,11 +25,13 @@
             {% if query %}
             <h2>Results for "{{ query }}":</h2>
             {% if results %}
-            {% for product in results %}
+            {% for person in results %}
+            <button class="btn-details" data-id="{{ person.id }}">Details</button>
             <div class="product">
-                <h3>{{ product.name }}</h3>
-                <p><strong>Desc:</strong> {{ product.description }}</p>
-                <p><strong>Price:</strong> ${{ product.price }}</p>
+                <h3>{{ person.name }}</h3>
+                <p><strong>Address:</strong> {{ person.address }}</p>
+                <p><strong>Gender:</strong> {{ person.sex }}</p>
+                <p><strong>Age:</strong> {{ person.age }}</p>
             </div>
             {% endfor %}
             {% else %}
@@ -39,61 +41,70 @@
         </div>
     </div>
     <button id="createButton" onclick="toggleForm()">Create</button>
-    <div id="createForm" style="display: none;">
-        <h2>Create Product</h2>
-        <form method="POST">
-            {% csrf_token %}
-            {{ create_form.name.label }} <!-- Render name label -->
-            {{ create_form.name }} <!-- Render name input -->
-            {{ create_form.email.label }} <!-- Render description label -->
-            {{ create_form.email }} <!-- Render description textarea -->
-            {{ create_form.address.label }} <!-- Render price label -->
-            {{ create_form.address }}
-            {{ create_form.phonenum.label }} <!-- Render price label -->
-            {{ create_form.phonenum }}
-            {{ create_form.age.label }} <!-- Render price label -->
-            {{ create_form.age }}
-            {{ create_form.sex.label }} <!-- Render price label -->
-            {{ create_form.sex }}
-            <button type="submit">Submit</button>
-        </form>
+    <div class="registerform">
+        <div id="createForm" style="display: none;">
+            <h2>Create Person</h2>
+            <form method="POST" enctype="multipart/form-data">
+                {% csrf_token %}
+                {{ create_form.name.label }} <!-- Render name label -->
+                {{ create_form.name }} <!-- Render name input -->
+                {{ create_form.email.label }} <!-- Render description label -->
+                {{ create_form.email }} <!-- Render description textarea -->
+                {{ create_form.address.label }} <!-- Render price label -->
+                {{ create_form.address }}
+                {{ create_form.phonenum.label }} <!-- Render price label -->
+                {{ create_form.phonenum }}
+                {{ create_form.age.label }} <!-- Render price label -->
+                {{ create_form.age }}
+                {{ create_form.sex.label }} <!-- Render price label -->
+                {{ create_form.sex }}
+                {{ create_form.image.label }} <!-- Render price label -->
+                {{ create_form.image }}
+                <button type="submit">Submit</button>
+            </form>
+        </div>
     </div>
 
+    <div class="line"></div>
     <!-- person_Table_view -->
 
-    <div class="">
-        <table class="person-table">
-            <thead>
-                <tr>
-                    <th>S/N</th>
-                    <th>Name</th>
-                    <th>Email</th>
-                    <th>Address</th>
-                    <th>Phone_Number</th>
-                    <th>Age</th>
-                    <th>Sex</th>
-                </tr>
-            </thead>
-            <tbody>
-                {% for person in people %}
-                <tr data-image-url="{{ person.image.url }}">
-                    <td>{{ person.id }}</td>
-                    <td>{{ person.name }}</td>
-                    <td>{{ person.email }}</td>
-                    <td>{{ person.address }}</td>
-                    <td>{{ person.phonenum }}</td>
-                    <td>{{ person.age }}</td>
-                    <td>{{ person.sex }}</td>  
-                </tr>
-                {% endfor %}
-            </tbody>
-        </table>
+    <table class="person-table">
+        <thead>
+            <tr>
+                <th>S/N</th>
+                <th>Name</th>
+                <th>Email</th>
+                <th>Address</th>
+                <th>Phone_Number</th>
+                <th>Age</th>
+                <th>Sex</th>
+            </tr>
+        </thead>
+        <tbody>
+            {% for person in people %}
+            <tr data-image-url="{{ person.image.url }}">
+                <td>{{ person.id }}</td>
+                <td>{{ person.name }}</td>
+                <td>{{ person.email }}</td>
+                <td>{{ person.address }}</td>
+                <td>+234{{ person.phonenum }}</td>
+                <td>{{ person.age }}</td>
+                <td>{{ person.sex }}</td>
+                <td class="tdbtn">
+                    <button class="btn-details" data-id="{{ person.id }}">Details</button>
+                </td>
+            </tr>
+            {% endfor %}
+        </tbody>
+    </table>
 
-        <!-- Section to display person's picture -->
-        <div id="person-image-container">
-            <img id="person-image" class="person-image" src="{{ person.image }}" alt="Click on a person to view their image"
-                style="display:none;">
-        </div>
+    <!-- <button id="BtnDetails" onclick="ShowDetails()">Details</button> -->
+   
+    <!-- Section to display person's picture -->
+    <div id="person-image-container">
+        <img id="person-image" class="person-image" src="" alt="Click on a person to view their image"
+            style="display:none;">
+    </div>
     </div>
 
 
@@ -115,7 +126,7 @@
 
 
     <!-- Load the static JavaScript file -->
-    <script src="{% static 'search/main.js' %}"></script>
+    <script src="{% static 'search/style.js' %}"></script>
 
 
 

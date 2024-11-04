@@ -12,8 +12,8 @@ function toggleForm() {
     }
 }
 
-document.querySelectorAll('.person-table tbody tr').forEach(function(row) {
-    row.addEventListener('click', function() {
+document.querySelectorAll('.person-table tbody tr').forEach(function (row) {
+    row.addEventListener('click', function () {
         // Get the image URL from the row data
         var imageUrl = this.getAttribute('data-image-url');
         var imageElement = document.getElementById('person-image');
@@ -28,6 +28,29 @@ document.querySelectorAll('.person-table tbody tr').forEach(function(row) {
 
 
 
+document.addEventListener('DOMContentLoaded', function () {
+    const detailButtons = document.querySelectorAll('.btn-details');
+
+    detailButtons.forEach(button => {
+        button.addEventListener('click', function () {
+            const personId = this.getAttribute('data-id');
+            
+            // Navigate to another page with the personId in the query string
+            window.location.href = `/details/?id=${personId}`;
+        });
+    });
+});
+
+
+
+function toggleBankDetails() {
+    const bankDetailDiv = document.getElementById('bankdetail');
+    if (bankDetailDiv.style.display === 'none' || bankDetailDiv.style.display === '') {
+        bankDetailDiv.style.display = 'block';
+    } else {
+        bankDetailDiv.style.display = 'none';
+    }
+}
 
 
 
@@ -77,6 +100,30 @@ document.querySelectorAll('.person-table tbody tr').forEach(function(row) {
 
 
 
+
+
+
+
+// document.addEventListener('DOMContentLoaded', function () {
+//     const detailButtons = document.querySelectorAll('.btn-details');
+
+//     detailButtons.forEach(button => {
+//         button.addEventListener('click', function () {
+//             const personId = this.getAttribute('data-id');
+//             const details = document.getElementById(`person-details-${personId}`);
+
+//             if (details.style.display === 'none' || details.style.display === '') {
+//                 details.style.display = 'block';
+//                 this.textContent = 'Cancel';
+//                 this.style.backgroundColor = 'red';
+//             } else {
+//                 details.style.display = 'none';
+//                 this.textContent = 'Details';
+//                 this.style.backgroundColor = '#28a745';
+//             }
+//         });
+//     });
+// });
 
 
 
